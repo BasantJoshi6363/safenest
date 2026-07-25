@@ -1,6 +1,5 @@
         @vite('resources/css/app.css')
-<!-- resources/views/hotels.blade.php -->
-    <!-- Include Navbar -->
+
     <x-navbar />
 
     <!-- Page Header Banner -->
