@@ -92,13 +92,36 @@
                             Login
                         </button>
                     </div>
-
-                    <!-- Register Redirect Link -->
-                    <div class="text-center pt-2">
-                        <span class="text-sm text-gray-600">Don't have an account? </span>
-                        <a href="/register" class="text-sm font-medium text-gray-900 hover:underline">Register</a>
-                    </div>
                 </form>
+
+                <!-- Divider -->
+                <div class="relative flex py-2 items-center">
+                    <div class="flex-grow border-t border-gray-200"></div>
+                    <span class="flex-shrink mx-4 text-xs text-gray-400 uppercase tracking-wider">Or continue with</span>
+                    <div class="flex-grow border-t border-gray-200"></div>
+                </div>
+
+                <!-- Social Logins Grid -->
+                <div class="grid grid-cols-2 gap-3">
+                    <!-- Google Login Button -->
+                    <a href="{{ route('google.redirect') }}" class="flex items-center justify-center py-3 px-4 border border-gray-200 hover:bg-gray-50 bg-white rounded-xl text-sm font-medium text-gray-700 shadow-sm transition">
+                        <img src="{{ asset('images/google.png') }}" alt="Google" class="w-5 h-5 mr-2">
+                        Google
+                    </a>
+
+                    <!-- Facebook Login Button -->
+                    <a href="{{ route('facebook.redirect') }}" class="flex items-center justify-center py-3 px-4 border border-gray-200 hover:bg-gray-50 bg-white rounded-xl text-sm font-medium text-gray-700 shadow-sm transition">
+                        <img src="{{ asset('images/facebook.png') }}" alt="Facebook" class="w-5 h-5 mr-2">
+                        Facebook
+                    </a>
+                </div>
+
+                <!-- Register Redirect Link -->
+                <div class="text-center pt-2">
+                    <span class="text-sm text-gray-600">Don't have an account? </span>
+                    <a href="/register" class="text-sm font-medium text-gray-900 hover:underline">Register</a>
+                </div>
+
             </div>
         </div>
 
