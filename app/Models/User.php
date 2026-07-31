@@ -22,6 +22,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'google_id',
+        'facebook_id',
+        'avtar',
     ];
 
     /**
@@ -46,4 +49,5 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    
 }
