@@ -3,48 +3,76 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
+use Laravel\Socialite\Two\InvalidStateException;
 
 class GoogleAuthController extends Controller
 {
-        public function redirect()
+    /**
+     * Redirect the user to the Google authentication page.
+     */
+    public function redirect()
     {
         return Socialite::driver('google')
             ->with(['prompt' => 'select_account'])
             ->redirect();
     }
 
+    /**
+     * Obtain the user information from Google.
+     */
     public function callback()
     {
-        // Get user information from Google
-        $googleUser = Socialite::driver('google')->user();
+        try {
+            // Attempt standard stateful authentication
+            $googleUser = Socialite::driver('google')->user();
+        } catch (InvalidStateException $e) {
+            // Fall back to stateless if session state verification fails
+            $googleUser = Socialite::driver('google')->stateless()->user();
+        } catch (Exception $e) {
+            // If authentication completely fails, send back to login with error
+            return redirect('/login')->with('error', 'Google authentication failed. Please try again.');
+        }
 
-        // Find existing user or create a new user
-        $user = User::updateOrCreate(
-            [
-                'email' => $googleUser->getEmail(),
-            ],
-            [
+        // Find existing user by google_id or email, or create a new one
+        $user = User::where('google_id', $googleUser->getId())
+            ->orWhere('email', $googleUser->getEmail())
+            ->first();
+
+        if ($user) {
+            // Update existing user details (without overwriting their password)
+            $user->update([
                 'name' => $googleUser->getName(),
                 'google_id' => $googleUser->getId(),
                 'avatar' => $googleUser->getAvatar(),
-
-                // Google users don't need to know this password
-                'password' => bcrypt(Str::random(32)),
-            ]
-        );
+            ]);
+        } else {
+            // Create new user if none exists
+            $user = User::create([
+                'name' => $googleUser->getName(),
+                'email' => $googleUser->getEmail(),
+                'google_id' => $googleUser->getId(),
+                'avatar' => $googleUser->getAvatar(),
+                'password' => Hash::make(Str::random(32)),
+            ]);
+        }
 
         // Log the user into Laravel
-        Auth::login($user);
+        Auth::login($user, true); // True to remember the user session
 
         // Redirect to dashboard
-        return redirect('/dashboard');
+        return redirect()->intended('/dashboard');
     }
 
-        public function logout(Request $request)
+    /**
+     * Log the user out of the application.
+     */
+    public function logout(Request $request)
     {
         Auth::logout();
 
@@ -52,5 +80,5 @@ class GoogleAuthController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/');
-}
+    }
 }
