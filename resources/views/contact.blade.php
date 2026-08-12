@@ -1,26 +1,6 @@
-   <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite('resources/css/app.css')
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
-    
-    <!-- Favicons & Manifest using direct absolute paths -->
-    <link rel="icon" type="image/png" href="/images/favicon/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="/images/favicon/favicon.svg" />
-    <link rel="shortcut icon" href="/images/favicon/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png" />
-    <link rel="manifest" href="/images/favicon/site.webmanifest" />
-    
-    <title>Contact | Safenest</title>
-</head>
-<body>
-   <!-- Include Navbar -->
-        @vite('resources/css/app.css')
-
-    <x-navbar />
-    <!-- Page Header Banner -->
+<x-layout title="Contact">
+    <div>
+         <!-- Page Header Banner -->
     <section class="bg-indigo-50/50 py-12 lg:py-16 border-b border-indigo-100/50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-3">
             <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 tracking-tight">
@@ -36,7 +16,7 @@
     <section class="py-16 lg:py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
-                
+
                 <!-- Left Column: Contact Information -->
                 <div class="space-y-8 lg:col-span-1">
                     <div>
@@ -159,7 +139,7 @@
                         </div>
 
                         <!-- Submit Button -->
-                        <button type="submit" 
+                        <button type="submit"
                                 class="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-8 py-3.5 rounded-xl shadow-md transition duration-150 ease-in-out flex items-center justify-center space-x-2">
                             <span>Send Message</span>
                             <i class="ri-send-plane-fill"></i>
@@ -170,9 +150,5 @@
             </div>
         </div>
     </section>
-
-    <!-- Include Footer -->
-    <x-footer />
-
-     </body>
-</html>
+    </div>
+</x-layout>
