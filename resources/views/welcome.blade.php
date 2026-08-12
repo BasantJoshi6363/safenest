@@ -1,40 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite('resources/css/app.css')
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
-    
-    <!-- Favicons & Manifest using direct absolute paths -->
-    <link rel="icon" type="image/png" href="/images/favicon/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="/images/favicon/favicon.svg" />
-    <link rel="shortcut icon" href="/images/favicon/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png" />
-    <link rel="manifest" href="/images/favicon/site.webmanifest" />
-    
-    <title>Home | Safenest</title>
-</head>
-<body>
-    <header>
-        <x-navbar />
-    </header>
+
+    <x-layout title="Home">
     <main>
 
         <!-- resources/views/components/hero.blade.php -->
         <section class="relative bg-white py-12 lg:py-16">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                
+
                 <!-- Hero Content Grid -->
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                    
+
                     <!-- Left Text Column -->
                     <div class="space-y-6">
                         <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 leading-tight">
                             Stop the Busy Work.<br />
                             <span class="text-indigo-900"> Start the Vacation.</span>
                         </h1>
-                        
+
                         <p class="text-gray-400 text-base max-w-md leading-relaxed">
                             We provide what you need to enjoy your holiday with family. Time to make another memorable moments.
                         </p>
@@ -78,9 +59,9 @@
                     <div class="relative flex justify-center lg:justify-end">
                         <div class="absolute inset-0 border-2 border-gray-200 rounded-[100px_30px_30px_30px] translate-x-4 translate-y-4 -z-10 hidden sm:block"></div>
                         <div class="relative w-full max-w-lg aspect-[4/3] rounded-[100px_30px_30px_30px] overflow-hidden shadow-xl">
-                            <img 
-                                src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=1000" 
-                                alt="Vacation View" 
+                            <img
+                                src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=1000"
+                                alt="Vacation View"
                                 class="w-full h-full object-cover"
                             />
                         </div>
@@ -91,7 +72,7 @@
                 <!-- Search Bar Overlay Box -->
                 <div class="mt-12 lg:mt-16 bg-blue-50/60 p-4 sm:p-6 rounded-2xl border border-blue-100 shadow-sm">
                     <form action="#" method="GET" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-center">
-                        
+
                         <!-- Field 1: Date -->
                         <div class="bg-white px-4 py-3 rounded-xl border border-gray-100 flex items-center space-x-3">
                             <i class="ri-calendar-line text-gray-400 text-xl"></i>
@@ -125,8 +106,4 @@
         </section>
 
     </main>
-    <footer>
-        <x-footer />
-    </footer>
-</body>
-</html>
+     </x-layout>
