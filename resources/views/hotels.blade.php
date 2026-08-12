@@ -1,26 +1,6 @@
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite('resources/css/app.css')
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
-    
-    <!-- Favicons & Manifest using direct absolute paths -->
-    <link rel="icon" type="image/png" href="/images/favicon/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="/images/favicon/favicon.svg" />
-    <link rel="shortcut icon" href="/images/favicon/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png" />
-    <link rel="manifest" href="/images/favicon/site.webmanifest" />
-    
-    <title>Hotels | Safenest</title>
-</head>
-<body>
-    @vite('resources/css/app.css')
-
-    <x-navbar />
-
-    <!-- Page Header Banner -->
+<x-layout title="Hotels">
+    <div>
+         <!-- Page Header Banner -->
     <section class="bg-indigo-50/50 py-12 lg:py-16 border-b border-indigo-100/50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-3">
             <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 tracking-tight">
@@ -35,7 +15,7 @@
     <!-- Filter & Hotels Grid Section -->
     <section class="py-12 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            
+
             <!-- Filters Bar -->
             <div class="flex flex-col md:flex-row justify-between items-center gap-4 mb-10">
                 <!-- Location Pills -->
@@ -66,12 +46,12 @@
 
             <!-- Hotels Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
+
                 <!-- Hotel Card 1 -->
                 <div class="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition duration-300 overflow-hidden group">
                     <div class="relative aspect-[4/3] overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80&w=800" 
-                             alt="Fewa Lake Resort" 
+                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80&w=800"
+                             alt="Fewa Lake Resort"
                              class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
                         <span class="absolute top-4 right-4 bg-indigo-600 text-white text-xs font-semibold px-3 py-1 rounded-full shadow">
                             NPR 8,500 / night
@@ -106,8 +86,8 @@
                 <!-- Hotel Card 2 -->
                 <div class="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition duration-300 overflow-hidden group">
                     <div class="relative aspect-[4/3] overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&q=80&w=800" 
-                             alt="Himalayan Heritage Hotel" 
+                        <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&q=80&w=800"
+                             alt="Himalayan Heritage Hotel"
                              class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
                         <span class="absolute top-4 right-4 bg-indigo-600 text-white text-xs font-semibold px-3 py-1 rounded-full shadow">
                             NPR 6,200 / night
@@ -142,8 +122,8 @@
                 <!-- Hotel Card 3 -->
                 <div class="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition duration-300 overflow-hidden group">
                     <div class="relative aspect-[4/3] overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=800" 
-                             alt="Chitwan Wildlife Retreat" 
+                        <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=800"
+                             alt="Chitwan Wildlife Retreat"
                              class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
                         <span class="absolute top-4 right-4 bg-indigo-600 text-white text-xs font-semibold px-3 py-1 rounded-full shadow">
                             NPR 11,000 / night
@@ -195,9 +175,5 @@
 
         </div>
     </section>
-
-    <!-- Include Footer -->
-    <x-footer />
-
-     </body>
-</html>
+    </div>
+</x-layout>
