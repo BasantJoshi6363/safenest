@@ -1,25 +1,5 @@
-     <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite('resources/css/app.css')
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
-    
-    <!-- Favicons & Manifest using direct absolute paths -->
-    <link rel="icon" type="image/png" href="/images/favicon/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="/images/favicon/favicon.svg" />
-    <link rel="shortcut icon" href="/images/favicon/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png" />
-    <link rel="manifest" href="/images/favicon/site.webmanifest" />
-    
-    <title>About | Safenest</title>
-</head>
-<body>     
-      @vite('resources/css/app.css')
-
-<!-- resources/views/about.blade.php -->
-    <x-navbar />
+<x-layout title="About">
+    <div>
 
     <!-- Page Header Banner -->
     <section class="bg-indigo-50/50 py-12 lg:py-16 border-b border-indigo-100/50">
@@ -37,13 +17,13 @@
     <section class="py-16 lg:py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-                
+
                 <!-- Left Column: Visual Grid -->
                 <div class="relative grid grid-cols-2 gap-4">
                     <div class="space-y-4">
                         <div class="rounded-2xl overflow-hidden shadow-md h-64 sm:h-72">
-                            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80&w=600" 
-                                 alt="Luxury Resort Pool" 
+                            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80&w=600"
+                                 alt="Luxury Resort Pool"
                                  class="w-full h-full object-cover" />
                         </div>
                         <div class="bg-indigo-600 text-white p-6 rounded-2xl shadow-md text-center">
@@ -57,8 +37,8 @@
                             <p class="text-xs text-gray-500 uppercase font-medium tracking-wider mt-1">Satisfied Guests</p>
                         </div>
                         <div class="rounded-2xl overflow-hidden shadow-md h-64 sm:h-72">
-                            <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&q=80&w=600" 
-                                 alt="Hotel Bedroom" 
+                            <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&q=80&w=600"
+                                 alt="Hotel Bedroom"
                                  class="w-full h-full object-cover" />
                         </div>
                     </div>
@@ -163,9 +143,6 @@
             </div>
         </div>
     </section>
+</div>
 
-    <!-- Include Footer -->
-    <x-footer />
-
-     </body>
-</html>
+</x-layout>
