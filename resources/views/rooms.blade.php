@@ -1,27 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite('resources/css/app.css')
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
-    
-    <!-- Favicons & Manifest using direct absolute paths -->
-    <link rel="icon" type="image/png" href="/images/favicon/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="/images/favicon/favicon.svg" />
-    <link rel="shortcut icon" href="/images/favicon/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png" />
-    <link rel="manifest" href="/images/favicon/site.webmanifest" />
-    
-    <title>Rooms | Safenest</title>
-</head>
-<body>
-<!-- resources/views/rooms.blade.php -->
-        @vite('resources/css/app.css')
-    <!-- Include Navbar -->
-    <x-navbar />
-
-    <!-- Page Header Banner -->
+<x-layout title="Rooms">
+    <container>
+                 <!-- Page Header Banner -->
     <section class="bg-indigo-50/50 py-12 lg:py-16 border-b border-indigo-100/50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-3">
             <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 tracking-tight">
@@ -36,7 +15,7 @@
     <!-- Rooms Listing Section -->
     <section class="py-12 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            
+
             <!-- Category Filter Pills -->
             <div class="flex items-center space-x-2 overflow-x-auto pb-6 mb-8 border-b border-gray-100">
                 <button class="bg-indigo-600 text-white px-5 py-2 rounded-full text-sm font-medium whitespace-nowrap shadow-sm">
@@ -58,14 +37,14 @@
 
             <!-- Rooms List Grid -->
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                
+
                 <!-- Room Card 1 -->
                 <div class="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition duration-300 overflow-hidden flex flex-col justify-between group">
                     <div>
                         <!-- Room Image -->
                         <div class="relative aspect-[16/10] overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&q=80&w=800" 
-                                 alt="Himalayan Executive Suite" 
+                            <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&q=80&w=800"
+                                 alt="Himalayan Executive Suite"
                                  class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
                             <span class="absolute top-4 left-4 bg-emerald-500 text-white text-xs font-semibold px-3 py-1 rounded-full shadow">
                                 Available
@@ -129,8 +108,8 @@
                     <div>
                         <!-- Room Image -->
                         <div class="relative aspect-[16/10] overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&q=80&w=800" 
-                                 alt="Deluxe Garden Double" 
+                            <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&q=80&w=800"
+                                 alt="Deluxe Garden Double"
                                  class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
                             <span class="absolute top-4 left-4 bg-emerald-500 text-white text-xs font-semibold px-3 py-1 rounded-full shadow">
                                 Available
@@ -194,8 +173,8 @@
                     <div>
                         <!-- Room Image -->
                         <div class="relative aspect-[16/10] overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&q=80&w=800" 
-                                 alt="Family Mountain Suite" 
+                            <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&q=80&w=800"
+                                 alt="Family Mountain Suite"
                                  class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
                             <span class="absolute top-4 left-4 bg-amber-500 text-white text-xs font-semibold px-3 py-1 rounded-full shadow">
                                 Few Left
@@ -259,7 +238,5 @@
         </div>
     </section>
 
-    <!-- Include Footer -->
-    <x-footer />
-    </body>
-</html>
+    </container>
+</x-layout>
