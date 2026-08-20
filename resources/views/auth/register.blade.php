@@ -47,8 +47,8 @@
                 </div>
 
                 <!-- Form starts -->
-                <form action="" method="POST" class="space-y-4">
-                    @csrf
+            <form action="{{ route('register') }}" method="POST" class="space-y-4">       
+             @csrf
 
                     <!-- Name Field -->
                     <div>

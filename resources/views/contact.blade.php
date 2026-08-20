@@ -80,24 +80,22 @@
                     </div>
                 </div>
 
-                <!-- Right Column: Form -->
-                <div class="bg-gray-50/60 p-8 sm:p-10 rounded-2xl border border-gray-100 lg:col-span-2">
-                    <h2 class="text-2xl font-bold text-gray-900 mb-6">Send Us a Message</h2>
+              <!-- Right Column: Form -->
+<div class="bg-gray-50/60 p-8 sm:p-10 rounded-2xl border border-gray-100 lg:col-span-2">
+    <h2 class="text-2xl font-bold text-gray-900 mb-6">Send Us a Message</h2>
 
-                    <form action="#" method="POST" class="space-y-6">
-                        @csrf
+    <!-- Session Status Alert -->
+    @if (session('status'))
+        <div class="mb-6 p-4 rounded-xl bg-green-50 border border-green-200 text-sm font-medium text-green-700 flex items-center space-x-2">
+            <i class="ri-checkbox-circle-line text-lg"></i>
+            <span>{{ session('status') }}</span>
+        </div>
+    @endif
 
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                            <!-- Full Name -->
-                            <div class="space-y-2">
-                                <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
-                                <div class="relative">
-                                    <i class="ri-user-line absolute left-4 top-3.5 text-gray-400 text-lg"></i>
-                                    <input type="text" id="name" name="name" placeholder="John Doe" required
-                                           class="w-full pl-11 pr-4 py-3 bg-white rounded-xl border border-gray-200 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition" />
-                                </div>
-                            </div>
+    <form action="{{ route('contact.submit') }}" method="POST" class="space-y-6">
+        @csrf
 
+<<<<<<< HEAD
                             <!-- Email -->
                             <div class="space-y-2">
                                 <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
@@ -145,7 +143,71 @@
                             <i class="ri-send-plane-fill"></i>
                         </button>
                     </form>
+=======
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <!-- Full Name -->
+            <div class="space-y-2">
+                <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
+                <div class="relative">
+                    <i class="ri-user-line absolute left-4 top-3.5 text-gray-400 text-lg"></i>
+                    <input type="text" id="name" name="name" value="{{ old('name') }}" placeholder="John Doe" required
+                           class="w-full pl-11 pr-4 py-3 bg-white rounded-xl border border-gray-200 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition" />
+>>>>>>> origin/forget_password
                 </div>
+                @error('name') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
+            </div>
+
+            <!-- Email -->
+            <div class="space-y-2">
+                <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+                <div class="relative">
+                    <i class="ri-mail-line absolute left-4 top-3.5 text-gray-400 text-lg"></i>
+                    <input type="email" id="email" name="email" value="{{ old('email') }}" placeholder="john@example.com" required
+                           class="w-full pl-11 pr-4 py-3 bg-white rounded-xl border border-gray-200 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition" />
+                </div>
+                @error('email') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <!-- Phone -->
+            <div class="space-y-2">
+                <label for="phone" class="block text-sm font-medium text-gray-700">Phone Number</label>
+                <div class="relative">
+                    <i class="ri-phone-line absolute left-4 top-3.5 text-gray-400 text-lg"></i>
+                    <input type="text" id="phone" name="phone" value="{{ old('phone') }}" placeholder="+977 9800000000"
+                           class="w-full pl-11 pr-4 py-3 bg-white rounded-xl border border-gray-200 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition" />
+                </div>
+            </div>
+
+            <!-- Subject -->
+            <div class="space-y-2">
+                <label for="subject" class="block text-sm font-medium text-gray-700">Subject</label>
+                <div class="relative">
+                    <i class="ri-chat-1-line absolute left-4 top-3.5 text-gray-400 text-lg"></i>
+                    <input type="text" id="subject" name="subject" value="{{ old('subject') }}" placeholder="Hotel inquiry" required
+                           class="w-full pl-11 pr-4 py-3 bg-white rounded-xl border border-gray-200 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition" />
+                </div>
+                @error('subject') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
+            </div>
+        </div>
+
+        <!-- Message -->
+        <div class="space-y-2">
+            <label for="message" class="block text-sm font-medium text-gray-700">Your Message</label>
+            <textarea id="message" name="message" rows="5" placeholder="How can SafeNest help you today?" required
+                      class="w-full p-4 bg-white rounded-xl border border-gray-200 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition">{{ old('message') }}</textarea>
+            @error('message') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" 
+                class="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-8 py-3.5 rounded-xl shadow-md transition duration-150 ease-in-out flex items-center justify-center space-x-2">
+            <span>Send Message</span>
+            <i class="ri-send-plane-fill"></i>
+        </button>
+    </form>
+</div>
 
             </div>
         </div>
