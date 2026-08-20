@@ -9,11 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
-<<<<<<< HEAD:app/Http/Controllers/GoogleAuthController.php
 use Laravel\Socialite\Two\InvalidStateException;
-=======
 use App\Http\Controllers\Controller;
->>>>>>> origin/forget_password:app/Http/Controllers/Auth/GoogleAuthController.php
 
 class GoogleAuthController extends Controller
 {
