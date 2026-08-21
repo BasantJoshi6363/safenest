@@ -12,6 +12,7 @@
     <link rel="shortcut icon" href="/images/favicon/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png" />
     <link rel="manifest" href="/images/favicon/site.webmanifest" />
+    <meta name="referrer" content="no-referrer">
 
     <title>{{ $title ?? 'Home' }} | Safenest</title>
 </head>
