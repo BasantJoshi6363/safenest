@@ -26,10 +26,6 @@ Route::get('/about', function () {
     return view('about');
 });
 
-Route::get('/contact', function () {
-    return view('contact');
-});
-
 Route::get('/hotels', function () {
     return view('hotels');
 });
@@ -85,26 +81,20 @@ Route::middleware('auth')->group(function () {
         $request->user()->sendEmailVerificationNotification();
         return back()->with('message', 'Verification link sent!');
     })->middleware(['throttle:6,1'])->name('verification.send');
-});
 
-//settings routes
-Route::middleware(['auth'])->group(function () {
+    // Settings
     Route::get('/settings', [SettingsController::class, 'edit'])->name('settings.edit');
     Route::put('/settings', [SettingsController::class, 'update'])->name('settings.update');
-});
 
-//profile routes
-
-Route::middleware(['auth'])->group(function () {
+    // Profile
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
     Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
 });
 
-//contactroute
-
-
-// Displays the contact page
+/*
+|--------------------------------------------------------------------------
+| Contact Form Routes
+|--------------------------------------------------------------------------
+*/
 Route::get('/contact', [ContactController::class, 'show'])->name('contact.show');
-
-// Handles the contact form submission
 Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
