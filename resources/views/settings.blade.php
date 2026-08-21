@@ -14,7 +14,7 @@
     @vite('resources/css/app.css')
 </head>
 <body class="bg-gray-50 font-sans antialiased">
-
+    <x-navbar/>
     <div class="min-h-screen flex flex-col md:flex-row">
         
         <!-- Left Side: Dynamic Profile Card & Branding -->
