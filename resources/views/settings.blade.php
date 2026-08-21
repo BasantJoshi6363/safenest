@@ -15,13 +15,13 @@
 
                 <!-- Avatar -->
                 <div class="relative mb-4">
-                    @if($user->avatar)
-                        <img
-                            src="{{ $user->avatar }}"
-                            alt="{{ $user->name }}"
-                            referrerpolicy="no-referrer"
-                            class="w-24 h-24 rounded-full object-cover border-4 border-white/70 shadow-lg"
-                        >
+                   @if($user->avatar)
+        <<img
+            src="{{ \Illuminate\Support\Str::startsWith($user->avatar, ['http://', 'https://']) ? $user->avatar : asset('storage/' . ltrim($user->avatar, '/')) }}"
+            alt="{{ $user->name }}"
+            referrerpolicy="no-referrer"
+            class="w-28 h-28 rounded-full object-cover border-4 border-white/80 shadow-xl"
+        >
                     @else
                         <div
                             class="w-24 h-24 rounded-full bg-blue-600 text-white font-bold text-3xl flex items-center justify-center border-4 border-white/60 shadow-lg"
