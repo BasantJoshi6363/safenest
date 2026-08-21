@@ -76,8 +76,10 @@
                                 <div
                                     class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-semibold border-2 border-transparent group-hover:border-indigo-600 transition overflow-hidden">
                                     @if(Auth::user()->avatar)
-                                        <img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}"
-                                            referrerpolicy="no-referrer" class="w-full h-full object-cover">
+                                        <img src="{{ \Illuminate\Support\Str::startsWith(Auth::user()->avatar, ['http://', 'https://']) ? Auth::user()->avatar : asset('storage/' . ltrim(Auth::user()->avatar, '/')) }}"
+                                            alt="{{ Auth::user()->name }}"
+                                            referrerpolicy="no-referrer"
+                                            class="w-full h-full object-cover">
                                     @else
                                         {{ strtoupper(substr(Auth::user()->name ?? 'U', 0, 2)) }}
                                     @endif
@@ -164,8 +166,15 @@
                         <div class="space-y-1">
                             <div class="flex items-center px-3 py-2 mb-2">
                                 <div
-                                    class="w-9 h-9 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-semibold mr-3">
-                                    {{ strtoupper(substr(Auth::user()->name ?? 'U', 0, 2)) }}
+                                    class="w-9 h-9 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-semibold mr-3 overflow-hidden">
+                                    @if(Auth::user()->avatar)
+                                        <img src="{{ \Illuminate\Support\Str::startsWith(Auth::user()->avatar, ['http://', 'https://']) ? Auth::user()->avatar : asset('storage/' . ltrim(Auth::user()->avatar, '/')) }}"
+                                            alt="{{ Auth::user()->name }}"
+                                            referrerpolicy="no-referrer"
+                                            class="w-full h-full object-cover">
+                                    @else
+                                        {{ strtoupper(substr(Auth::user()->name ?? 'U', 0, 2)) }}
+                                    @endif
                                 </div>
                                 <div>
                                     <p class="text-sm font-medium text-gray-800">{{ Auth::user()->name }}</p>
@@ -212,7 +221,7 @@
 
             // --- 2. User Dropdown Logic ---
             @auth
-                    const userMenuButton = document.getElementById('userMenuButton');
+                const userMenuButton = document.getElementById('userMenuButton');
                 const userDropdownMenu = document.getElementById('userDropdownMenu');
 
                 if (userMenuButton && userDropdownMenu) {
@@ -230,8 +239,8 @@
                 }
             @endauth
 
-        // --- 3. Mobile Menu Logic ---
-        const mobileMenuButton = document.getElementById('mobileMenuButton');
+            // --- 3. Mobile Menu Logic ---
+            const mobileMenuButton = document.getElementById('mobileMenuButton');
             const mobileMenu = document.getElementById('mobileMenu');
             const menuOpenIcon = document.getElementById('menuOpenIcon');
             const menuCloseIcon = document.getElementById('menuCloseIcon');
