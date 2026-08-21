@@ -16,7 +16,7 @@
                 <div class="relative group mb-4">
                     @if($user->avatar)
                         <img
-                            src="{{ $user->avatar }}"
+                            src="{{ \Illuminate\Support\Str::startsWith($user->avatar, ['http://', 'https://']) ? $user->avatar : asset('storage/' . ltrim($user->avatar, '/')) }}"
                             alt="{{ $user->name }}"
                             referrerpolicy="no-referrer"
                             class="w-28 h-28 rounded-full object-cover border-4 border-white/80 shadow-xl"
@@ -57,7 +57,7 @@
                 <!-- Profile Indicators -->
                 <div class="absolute bottom-8 flex space-x-2">
                     <span class="w-2.5 h-2.5 bg-white/60 rounded-full"></span>
-                    <span class="w-6 h-2.5 bg-blue-600 rounded-full"></span>
+                    <span class="w-6 h-6 bg-blue-600 rounded-full"></span>
                 </div>
             </div>
         </div>
