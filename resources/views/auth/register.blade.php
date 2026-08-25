@@ -159,11 +159,8 @@
                     <span class="text-sm text-gray-600">Already have an account? </span>
                     <a href="#" class="text-sm font-medium text-gray-900 hover:underline">Login</a>
                 </div>
-
             </div>
         </div>
-
     </div>
-
 </body>
 </html>

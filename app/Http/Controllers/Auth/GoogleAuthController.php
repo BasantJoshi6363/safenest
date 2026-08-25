@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
+use App\Notifications\WelcomeUser;
 
 use App\Models\User;
 use Exception;
@@ -62,7 +63,7 @@ class GoogleAuthController extends Controller
                 'password' => Hash::make(Str::random(32)),
             ]);
         }
-
+        $user->notify(new WelcomeUser());
         // Log the user into Laravel
         Auth::login($user, true); // True to remember the user session
 
