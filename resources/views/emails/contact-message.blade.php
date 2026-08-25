@@ -1,121 +1,420 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Message - SafeNest</title>
-    @vite('resources/css/app.css')
+
+    <title>New Contact Inquiry - SafeNest</title>
 </head>
-<body class="bg-gray-50 font-sans antialiased">
 
-    <div class="min-h-screen flex flex-col md:flex-row">
-        
-        <!-- Left Side: Background Image & Branding -->
-        <div class="hidden md:flex md:w-1/2 relative bg-cover bg-center items-center justify-center p-8" style="background-image: url('{{ asset('images/login_img.jpg') }}');">
-            <!-- Dark Overlay -->
-            <div class="absolute inset-0 bg-black/20"></div>
+<body style="
+    margin:0;
+    padding:0;
+    width:100%;
+    background-color:#f5f7fb;
+    font-family:Arial, Helvetica, sans-serif;
+    color:#111827;
+">
 
-            <!-- Glassmorphism Card Container -->
-            <div class="relative z-10 w-full max-w-lg h-[85vh] bg-white/40 backdrop-blur-md rounded-3xl border border-white/50 shadow-2xl flex flex-col items-center justify-center p-8 text-center">
-                <h1 class="text-4xl lg:text-5xl font-bold tracking-tight text-blue-900">
-                    Safe<span class="text-blue-600">Nest.</span>
-                </h1>
-                
-                <!-- Carousel Indicators -->
-                <div class="absolute bottom-8 flex space-x-2">
-                    <span class="w-2.5 h-2.5 bg-white/60 rounded-full cursor-pointer"></span>
-                    <span class="w-6 h-2.5 bg-blue-600 rounded-full cursor-pointer"></span>
-                </div>
-            </div>
-        </div>
+    <!-- Main Wrapper -->
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="
+            width:100%;
+            margin:0;
+            padding:0;
+            background-color:#f5f7fb;
+        ">
+        <tr>
+            <td align="center" style="padding:40px 15px;">
 
-        <!-- Right Side: Contact Form -->
-        <div class="w-full md:w-1/2 flex items-center justify-center p-6 sm:p-12 lg:p-16 bg-white">
-            <div class="w-full max-w-md space-y-6">
-                
-                <div>
-                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 text-center md:text-left">
-                        Get in Touch
-                    </h2>
-                    <p class="mt-2 text-sm text-gray-500 text-center md:text-left">
-                        Have a question or inquiry? Fill out the form below and our team will get back to you shortly.
-                    </p>
-                </div>
+                <!-- Email Container -->
+                <table width="650" cellpadding="0" cellspacing="0" border="0" style="
+                        width:100%;
+                        max-width:650px;
+                        background:#ffffff;
+                        border:1px solid #e5e7eb;
+                        border-radius:18px;
+                        overflow:hidden;
+                    ">
 
-                <!-- Session Status Message -->
-                @if (session('status'))
-                    <div class="p-4 rounded-xl bg-green-50 border border-green-200 text-sm font-medium text-green-600">
-                        {{ session('status') }}
-                    </div>
-                @endif
+                    <!-- ================================= -->
+                    <!-- HEADER -->
+                    <!-- ================================= -->
 
-                <!-- General Error Messages Container -->
-                @if ($errors->any())
-                    <div class="p-4 rounded-xl bg-red-50 border border-red-200 text-sm font-medium text-red-600">
-                        <ul class="list-disc list-inside space-y-1">
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
+                    <tr>
+                        <td style="
+                                padding:30px 35px;
+                                background:#ffffff;
+                                border-bottom:1px solid #eef0f4;
+                            ">
 
-                <!-- Form Starts -->
-                <form method="POST" action="{{ route('contact.submit') }}" class="space-y-4">
-                    @csrf
+                            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                                <tr>
 
-                    <!-- Name Field -->
-                    <div>
-                        <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
-                        <input type="text" name="name" id="name" value="{{ old('name') }}" placeholder="John Doe" required
-                            class="mt-1 block w-full px-4 py-3 bg-gray-50 border @error('name') border-red-500 @else border-gray-200 @enderror rounded-xl text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition">
-                        @error('name')
-                            <p class="mt-1 text-xs text-red-600">{{ $message }}</p>
-                        @enderror
-                    </div>
+                                    <!-- Logo -->
+                                    <td align="left">
+<img
+    src="cid:safenest-logo"
+    alt="SafeNest"
+    width="150"
+    style="
+        display:block;
+        width:150px;
+        max-width:150px;
+        height:auto;
+        border:0;
+    "
+>
+                                    </td>
 
-                    <!-- Email Field -->
-                    <div>
-                        <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
-                        <input type="email" name="email" id="email" value="{{ old('email') }}" placeholder="name@gmail.com" required
-                            class="mt-1 block w-full px-4 py-3 bg-gray-50 border @error('email') border-red-500 @else border-gray-200 @enderror rounded-xl text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition">
-                        @error('email')
-                          <p class="mt-1 text-xs text-red-600">{{ $message }}</p>
-                        @enderror
-                    </div>
+                                    <!-- Badge -->
+                                    <td align="right">
 
-                    <!-- Message Field -->
-                    <div>
-                        <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
-                        <textarea name="message" id="message" rows="4" placeholder="Write your message here..." required
-                            class="mt-1 block w-full px-4 py-3 bg-gray-50 border @error('message') border-red-500 @else border-gray-200 @enderror rounded-xl text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition">{{ old('message') }}</textarea>
-                        @error('message')
-                            <p class="mt-1 text-xs text-red-600">{{ $message }}</p>
-                        @enderror
-                    </div>
+                                        <span style="
+                                            display:inline-block;
+                                            padding:7px 12px;
+                                            background:#eef2ff;
+                                            color:#4f46e5;
+                                            border-radius:20px;
+                                            font-size:11px;
+                                            font-weight:700;
+                                        ">
+                                            CONTACT
+                                        </span>
 
-                    <!-- Submit Button -->
-                    <div>
-                        <button type="submit" class="w-full py-3.5 px-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-xl shadow-lg shadow-blue-500/30 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all">
-                            Send Message
-                        </button>
-                    </div>
-                </form>
+                                    </td>
 
-                <!-- Back Home Link -->
-                <div class="text-center pt-2">
-                    <a href="{{ url('/') }}" class="inline-flex items-center text-sm font-medium text-gray-600 hover:text-gray-900 transition">
-                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-                        </svg>
-                        Back to Home
-                    </a>
-                </div>
+                                </tr>
+                            </table>
 
-            </div>
-        </div>
+                        </td>
+                    </tr>
 
-    </div>
+
+                    <!-- ================================= -->
+                    <!-- HERO -->
+                    <!-- ================================= -->
+
+                    <tr>
+                        <td style="padding:32px 35px 10px;">
+
+                            <h1 style="
+                                margin:0;
+                                font-size:26px;
+                                line-height:1.3;
+                                font-weight:700;
+                                color:#111827;
+                            ">
+                                New Contact Inquiry
+                            </h1>
+
+                            <p style="
+                                margin:10px 0 0;
+                                font-size:14px;
+                                line-height:1.6;
+                                color:#6b7280;
+                            ">
+                                Someone has contacted the SafeNest team through your website.
+                            </p>
+
+                        </td>
+                    </tr>
+
+
+                    <!-- ================================= -->
+                    <!-- SENDER INFORMATION -->
+                    <!-- ================================= -->
+
+                    <tr>
+                        <td style="padding:25px 35px 0;">
+
+                            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="
+                                    background:#f9fafb;
+                                    border:1px solid #e5e7eb;
+                                    border-radius:14px;
+                                ">
+
+                                <tr>
+                                    <td style="padding:22px;">
+
+                                        <!-- Section Title -->
+                                        <div style="
+                                            margin-bottom:18px;
+                                            font-size:15px;
+                                            font-weight:700;
+                                            color:#111827;
+                                        ">
+
+                                            <span style="
+                                                display:inline-block;
+                                                width:8px;
+                                                height:8px;
+                                                margin-right:8px;
+                                                background:#4f46e5;
+                                                border-radius:50%;
+                                            "></span>
+
+                                            Sender Information
+
+                                        </div>
+
+
+                                        <!-- Name -->
+                                        <table width="100%" cellpadding="0" cellspacing="0" border="0"
+                                            style="margin-bottom:10px;">
+                                            <tr>
+
+                                                <td width="100" style="
+                                                        font-size:12px;
+                                                        font-weight:600;
+                                                        color:#9ca3af;
+                                                    ">
+                                                    NAME
+                                                </td>
+
+                                                <td style="
+                                                    font-size:14px;
+                                                    font-weight:600;
+                                                    color:#111827;
+                                                ">
+                                                    {{ $name }}
+                                                </td>
+
+                                            </tr>
+                                        </table>
+
+
+                                        <!-- Email -->
+                                        <table width="100%" cellpadding="0" cellspacing="0" border="0"
+                                            style="margin-bottom:10px;">
+                                            <tr>
+
+                                                <td width="100" style="
+                                                        font-size:12px;
+                                                        font-weight:600;
+                                                        color:#9ca3af;
+                                                    ">
+                                                    EMAIL
+                                                </td>
+
+                                                <td>
+
+                                                    <a href="mailto:{{ $email }}" style="
+                                                            font-size:14px;
+                                                            font-weight:600;
+                                                            color:#4f46e5;
+                                                            text-decoration:none;
+                                                        ">
+                                                        {{ $email }}
+                                                    </a>
+
+                                                </td>
+
+                                            </tr>
+                                        </table>
+
+
+                                        <!-- Phone -->
+                                        @if($phone)
+
+                                            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                                                <tr>
+
+                                                    <td width="100" style="
+                                                                font-size:12px;
+                                                                font-weight:600;
+                                                                color:#9ca3af;
+                                                            ">
+                                                        PHONE
+                                                    </td>
+
+                                                    <td>
+
+                                                        <a href="tel:{{ $phone }}" style="
+                                                                    font-size:14px;
+                                                                    font-weight:600;
+                                                                    color:#111827;
+                                                                    text-decoration:none;
+                                                                ">
+                                                            {{ $phone }}
+                                                        </a>
+
+                                                    </td>
+
+                                                </tr>
+                                            </table>
+
+                                        @endif
+
+                                    </td>
+                                </tr>
+
+                            </table>
+
+                        </td>
+                    </tr>
+
+
+                    <!-- ================================= -->
+                    <!-- PURPOSE -->
+                    <!-- ================================= -->
+
+                    <tr>
+                        <td style="padding:24px 35px 0;">
+
+                            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="
+                                    background:#eef2ff;
+                                    border-left:4px solid #4f46e5;
+                                    border-radius:10px;
+                                ">
+                                <tr>
+
+                                    <td style="padding:18px 20px;">
+
+                                        <div style="
+                                            margin-bottom:7px;
+                                            font-size:11px;
+                                            font-weight:700;
+                                            letter-spacing:.08em;
+                                            text-transform:uppercase;
+                                            color:#6366f1;
+                                        ">
+                                            Purpose / Subject
+                                        </div>
+
+                                        <div style="
+                                            font-size:16px;
+                                            line-height:1.5;
+                                            font-weight:600;
+                                            color:#111827;
+                                        ">
+                                            {{ $subject }}
+                                        </div>
+
+                                    </td>
+
+                                </tr>
+                            </table>
+
+                        </td>
+                    </tr>
+
+
+                    <!-- ================================= -->
+                    <!-- MESSAGE -->
+                    <!-- ================================= -->
+
+                    <tr>
+                        <td style="padding:28px 35px 0;">
+
+                            <div style="
+                                margin-bottom:10px;
+                                font-size:15px;
+                                font-weight:700;
+                                color:#111827;
+                            ">
+                                Message
+                            </div>
+
+
+                            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="
+                                    background:#f9fafb;
+                                    border:1px solid #e5e7eb;
+                                    border-radius:14px;
+                                ">
+                                <tr>
+
+                                    <td style="
+                                        padding:22px;
+                                        font-size:14px;
+                                        line-height:1.8;
+                                        color:#374151;
+                                    ">
+
+                                        {!! nl2br(e($contactMessage)) !!}
+
+                                    </td>
+
+                                </tr>
+                            </table>
+
+                        </td>
+                    </tr>
+
+
+                    <!-- ================================= -->
+                    <!-- REPLY BUTTON -->
+                    <!-- ================================= -->
+
+                    <tr>
+                        <td align="center" style="padding:30px 35px 35px;">
+
+                            <a href="mailto:{{ $email }}" style="
+                                    display:inline-block;
+                                    padding:13px 25px;
+                                    background:#4f46e5;
+                                    color:#ffffff;
+                                    text-decoration:none;
+                                    font-size:14px;
+                                    font-weight:600;
+                                    border-radius:10px;
+                                ">
+                                Reply to {{ $name }}
+                            </a>
+
+                        </td>
+                    </tr>
+
+
+                    <!-- ================================= -->
+                    <!-- FOOTER -->
+                    <!-- ================================= -->
+
+                    <tr>
+                        <td align="center" style="
+                                padding:24px 35px;
+                                background:#f9fafb;
+                                border-top:1px solid #e5e7eb;
+                            ">
+<img
+    src="cid:safenest-logo"
+    alt="SafeNest"
+    width="150"
+    style="
+        display:block;
+        width:150px;
+        max-width:150px;
+        height:auto;
+        border:0;
+    "
+>
+
+                            <p style="
+                                margin:0;
+                                font-size:12px;
+                                line-height:1.6;
+                                color:#9ca3af;
+                            ">
+                                Hotel & Resort Booking in Nepal
+                            </p>
+
+                            <p style="
+                                margin:6px 0 0;
+                                font-size:12px;
+                                color:#9ca3af;
+                            ">
+                                {{ config('mail.from.address') }}
+                            </p>
+
+                        </td>
+                    </tr>
+
+                </table>
+
+            </td>
+        </tr>
+    </table>
 
 </body>
+
 </html>
