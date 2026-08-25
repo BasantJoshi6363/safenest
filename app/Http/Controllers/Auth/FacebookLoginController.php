@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 
+use App\Notifications\WelcomeUser;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -14,9 +15,9 @@ class FacebookLoginController extends Controller
     public function redirect()
     {
         return Socialite::driver('facebook')
-        ->with(['prompt' => 'select_account'])
+            ->with(['prompt' => 'select_account'])
 
-        ->redirect();
+            ->redirect();
     }
 
     public function callback()
@@ -34,14 +35,14 @@ class FacebookLoginController extends Controller
                 'password' => Hash::make(Str::random(32)),
             ]
         );
-
+        $user->notify(new WelcomeUser());
         Auth::login($user);
 
         return redirect('/dashboard');
     }
 
 
-        public function logout(Request $request)
+    public function logout(Request $request)
     {
         Auth::logout();
 
@@ -49,6 +50,6 @@ class FacebookLoginController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/');
-}
+    }
 
 }
