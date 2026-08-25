@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Notifications\WelcomeUser;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
@@ -25,7 +26,7 @@ class AuthController extends Controller
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
         ]);
-
+        $user->notify(new WelcomeUser());
         Auth::login($user);
 
         $request->session()->regenerate();
@@ -51,7 +52,7 @@ class AuthController extends Controller
         return redirect()->intended(route('dashboard'));
     }
 
-  
+
     public function logout(Request $request)
     {
         Auth::logout();
