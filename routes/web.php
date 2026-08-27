@@ -11,6 +11,9 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\SettingsController;
 use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\Auth\ContactController;
+use App\Http\Controllers\CRUD\HotelController;
+use App\Http\Controllers\CRUD\RoomController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -98,3 +101,11 @@ Route::middleware('auth')->group(function () {
 */
 Route::get('/contact', [ContactController::class, 'show'])->name('contact.show');
 Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
+
+// Hotels Routes
+Route::get('/hotels', [HotelController::class, 'index'])->name('hotels.index');
+Route::get('/hotels/{hotel:slug}', [HotelController::class, 'show'])->name('hotels.show');
+
+// Rooms Route
+Route::get('/rooms', [RoomController::class, 'index'])->name('rooms.index');
+
