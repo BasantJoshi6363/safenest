@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Mail\ContactMessageNotification;
 use Illuminate\Http\Request;
+use App\Models\Contact;
 use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
@@ -24,8 +25,17 @@ class ContactController extends Controller
             'message' => ['required', 'string', 'max:2000'],
         ]);
 
+        Contact::create([
+            'name'    => $validated['name'],
+            'email'   => $validated['email'],
+            'message' => "Subject: {$validated['subject']}\nPhone: " . ($validated['phone'] ?? 'N/A') . "\n\nMessage:\n{$validated['message']}",
+            'is_read' => false,
+        ]);
+
          Mail::to(config('mail.contact_address'))
             ->send(new ContactMessageNotification($validated));
+
+    
 
         return back()->with(
             'status',
