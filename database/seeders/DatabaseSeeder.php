@@ -2,24 +2,27 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Hotel;
+use App\Models\Room;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    use WithoutModelEvents;
-
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
-        // User::factory(10)->create();
+        $nepalLocations = ['Kathmandu', 'Pokhara', 'Chitwan', 'Mustang', 'Nagarkot', 'Lumbini', 'Bandipur', 'Dhulikhel'];
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        foreach ($nepalLocations as $city) {
+            // Create 2 hotels per destination
+            Hotel::factory(2)->create([
+                'destination' => $city,
+                'city' => $city,
+            ])->each(function ($hotel) {
+                // Seed 4-6 rooms for each hotel with exact matching attributes
+                Room::factory(rand(4, 6))->create([
+                    'hotel_id' => $hotel->id,
+                ]);
+            });
+        }
     }
 }
