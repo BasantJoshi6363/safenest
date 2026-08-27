@@ -4,3 +4,5 @@ user register, forgot password room book garda booking cancel huda kheri ani naw
 
 
 pending -> hotel create garda mail pathaunu parne
+
+booking book garda mail garne cancel garda mail garne naya offer ra news ko lagi mail garne ani payments;
