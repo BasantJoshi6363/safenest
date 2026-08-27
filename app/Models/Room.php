@@ -21,7 +21,9 @@ class Room extends Model
         'size',
         'size_unit',
         'price_per_night',
-        'image',
+        'image',            // kept for backward compatibility if needed
+        'featured_image',   // newly added
+        'gallery_images',    // newly added
         'balcony',
         'wifi',
         'smart_tv',
@@ -43,6 +45,7 @@ class Room extends Model
     ];
 
     protected $casts = [
+        'gallery_images' => 'array', // Cast JSON string to array
         'size' => 'decimal:2',
         'price_per_night' => 'decimal:2',
 
