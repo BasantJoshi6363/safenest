@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany; // 1. Import HasMany
 
 class Room extends Model
 {
@@ -21,9 +22,9 @@ class Room extends Model
         'size',
         'size_unit',
         'price_per_night',
-        'image',            // kept for backward compatibility if needed
-        'featured_image',   // newly added
-        'gallery_images',    // newly added
+        'image',
+        'featured_image',
+        'gallery_images',
         'balcony',
         'wifi',
         'smart_tv',
@@ -45,10 +46,9 @@ class Room extends Model
     ];
 
     protected $casts = [
-        'gallery_images' => 'array', // Cast JSON string to array
+        'gallery_images' => 'array',
         'size' => 'decimal:2',
         'price_per_night' => 'decimal:2',
-
         'balcony' => 'boolean',
         'wifi' => 'boolean',
         'smart_tv' => 'boolean',
@@ -64,12 +64,17 @@ class Room extends Model
         'safari_guidance' => 'boolean',
         'mini_bar' => 'boolean',
         'refreshments' => 'boolean',
-
         'is_active' => 'boolean',
     ];
 
     public function hotel(): BelongsTo
     {
         return $this->belongsTo(Hotel::class);
+    }
+
+    // 2. Add this bookings relationship method
+    public function bookings(): HasMany
+    {
+        return $this->hasMany(Booking::class);
     }
 }
