@@ -56,7 +56,7 @@
                     </h2>
 
                     <p class="text-gray-500 text-base leading-relaxed">
-                        Founded with a passion for exceptional experiences, LankaStay connects travelers with handpicked luxury stays, serene resorts, and boutique rooms across stunning destinations.
+                        Founded with a passion for exceptional experiences, SafeNest connects travelers with handpicked luxury stays, serene resorts, and boutique rooms across stunning destinations.
                     </p>
 
                     <p class="text-gray-500 text-base leading-relaxed">
@@ -103,7 +103,7 @@
     <section class="py-16 bg-gray-50/50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-2xl mx-auto space-y-3 mb-12">
-                <h2 class="text-3xl font-extrabold text-gray-900">Why Choose LankaStay?</h2>
+                <h2 class="text-3xl font-extrabold text-gray-900">Why Choose SafeNest?</h2>
                 <p class="text-gray-500 text-sm">We combine simplicity, luxury, and security to make your holiday booking effortless.</p>
             </div>
 
