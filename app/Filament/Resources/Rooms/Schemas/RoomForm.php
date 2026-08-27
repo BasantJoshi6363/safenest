@@ -84,7 +84,15 @@ class RoomForm
                                     ->numeric()
                                     ->prefix('NPR')
                                     ->required(),
+                                TextInput::make('total_rooms')
+                                    ->numeric()
+                                    ->default(1)
+                                    ->required(),
 
+                                TextInput::make('available_rooms')
+                                    ->numeric()
+                                    ->default(1)
+                                    ->required(),
                                 FileUpload::make('featured_image')
                                     ->label('Featured Image')
                                     ->image()
