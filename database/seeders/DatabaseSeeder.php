@@ -4,25 +4,24 @@ namespace Database\Seeders;
 
 use App\Models\Hotel;
 use App\Models\Room;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        $nepalLocations = ['Kathmandu', 'Pokhara', 'Chitwan', 'Mustang', 'Nagarkot', 'Lumbini', 'Bandipur', 'Dhulikhel'];
+        // 1. Create default admin/user
+        User::factory()->create([
+            'name' => 'Test User',
+            'email' => 'test@example.com',
+        ]);
 
-        foreach ($nepalLocations as $city) {
-            // Create 2 hotels per destination
-            Hotel::factory(2)->create([
-                'destination' => $city,
-                'city' => $city,
-            ])->each(function ($hotel) {
-                // Seed 4-6 rooms for each hotel with exact matching attributes
-                Room::factory(rand(4, 6))->create([
-                    'hotel_id' => $hotel->id,
-                ]);
-            });
-        }
+        // 2. Create Hotels and associate Rooms
+        Hotel::factory(10)->create()->each(function ($hotel) {
+            Room::factory(5)->create([
+                'hotel_id' => $hotel->id,
+            ]);
+        });
     }
 }
