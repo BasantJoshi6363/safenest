@@ -20,40 +20,20 @@
                 <form method="GET" action="{{ route('rooms.index') }}"
                     class="flex flex-col md:flex-row justify-between items-center gap-4 mb-10">
 
-                    <!-- Category Filter with Remix Icon Controls -->
-                    <div x-data="{
-                        scrollLeft() { $refs.categoryContainer.scrollBy({ left: -200, behavior: 'smooth' }) },
-                        scrollRight() { $refs.categoryContainer.scrollBy({ left: 200, behavior: 'smooth' }) }
-                    }" class="relative flex items-center w-full md:w-auto">
+                 <!-- Category Filter Pills -->
+<div class="flex items-center space-x-2 overflow-x-auto pb-6 mb-8 border-b border-gray-100">
+    @php
+        $categories = ['All', 'Deluxe', 'Suite', 'Standard', 'Cottage', 'Villa'];
+        $selectedCat = request('category', 'All');
+    @endphp
 
-                        <!-- Left Arrow Button -->
-                        <button type="button" @click="scrollLeft()"
-                            class="hidden sm:flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 hover:bg-indigo-50 hover:text-indigo-600 text-gray-600 transition shadow-sm mr-2 shrink-0">
-                            <i class="ri-arrow-left-s-line text-lg"></i>
-                        </button>
-
-                        <!-- Category Pills (Scrollbar Hidden) -->
-                        <div x-ref="categoryContainer"
-                            class="flex items-center space-x-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-                            @php
-                                $categories = ['All', 'Deluxe', 'Suite', 'Standard', 'Cottage', 'Villa'];
-                                $selectedCat = request('category', 'All');
-                            @endphp
-
-                            @foreach($categories as $cat)
-                                <a href="{{ route('rooms.index', array_merge(request()->query(), ['category' => $cat])) }}"
-                                    class="px-5 py-2 rounded-full text-sm font-medium whitespace-nowrap transition shrink-0 {{ $selectedCat === $cat ? 'bg-indigo-600 text-white shadow-sm' : 'bg-gray-100 hover:bg-gray-200 text-gray-700' }}">
-                                    {{ $cat === 'All' ? 'All Rooms' : $cat }}
-                                </a>
-                            @endforeach
-                        </div>
-
-                        <!-- Right Arrow Button -->
-                        <button type="button" @click="scrollRight()"
-                            class="hidden sm:flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 hover:bg-indigo-50 hover:text-indigo-600 text-gray-600 transition shadow-sm ml-2 shrink-0">
-                            <i class="ri-arrow-right-s-line text-lg"></i>
-                        </button>
-                    </div>
+    @foreach($categories as $cat)
+        <a href="{{ route('rooms.index', array_merge(request()->query(), ['category' => $cat])) }}"
+           class="px-5 py-2 rounded-full text-sm font-medium whitespace-nowrap transition {{ $selectedCat === $cat ? 'bg-indigo-600 text-white shadow-sm' : 'bg-gray-100 hover:bg-gray-200 text-gray-700' }}">
+            {{ $cat === 'All' ? 'All Rooms' : $cat }}
+        </a>
+    @endforeach
+</div>  
 
                     <!-- Search Input -->
                     <div class="relative w-full md:w-72">
