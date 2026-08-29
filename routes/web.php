@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\PAYMENT\EsewaController;
+use App\Http\Controllers\CRUD\OrderController;
+use App\Http\Controllers\PAYMENT\StripeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\GoogleAuthController;
@@ -109,3 +112,15 @@ Route::get('/hotels/{hotel:slug}', [HotelController::class, 'show'])->name('hote
 // Rooms Route
 Route::get('/rooms', [RoomController::class, 'index'])->name('rooms.index');
 
+Route::get('/rooms/{room:slug}', [RoomController::class, 'show'])->name('rooms.show');
+
+Route::get('/rooms/{room:slug}', [RoomController::class, 'show'])->name('rooms.show');
+Route::post('/rooms/{room:slug}/book', [OrderController::class, 'confirm'])->name('orders.confirm');
+Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
+Route::get('/orders/{order:order_number}', [OrderController::class, 'success'])->name('orders.success');
+
+Route::get('/payments/esewa/{order:order_number}/initiate', [EsewaController::class, 'initiate'])->name('payments.esewa.initiate');
+Route::get('/payments/esewa/success', [EsewaController::class, 'success'])->name('payments.esewa.success');
+Route::get('/payments/esewa/failure', [EsewaController::class, 'failure'])->name('payments.esewa.failure');
+Route::get('/payments/stripe/{order:order_number}/initiate', [StripeController::class, 'initiate'])->name('payments.stripe.initiate');
+Route::get('/payments/stripe/success', [StripeController::class, 'success'])->name('payments.stripe.success');
