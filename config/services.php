@@ -46,5 +46,10 @@ return [
         'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
         'redirect' => env('FACEBOOK_REDIRECT_URI'),
     ],
+    'esewa' => [
+    'product_code' => env('ESEWA_PRODUCT_CODE', 'EPAYTEST'),
+    'secret' => env('ESEWA_SECRET', '8gBm/:&EnhH.1/q'),
+    'gateway_url' => env('ESEWA_GATEWAY_URL', 'https://rc-epay.esewa.com.np/api/epay/main/v2/form'),
+],
 
 ];
