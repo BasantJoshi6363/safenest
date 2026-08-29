@@ -20,20 +20,20 @@
                 <form method="GET" action="{{ route('rooms.index') }}"
                     class="flex flex-col md:flex-row justify-between items-center gap-4 mb-10">
 
-                 <!-- Category Filter Pills -->
-<div class="flex items-center space-x-2 overflow-x-auto pb-6 mb-8 border-b border-gray-100">
-    @php
-        $categories = ['All', 'Deluxe', 'Suite', 'Standard', 'Cottage', 'Villa'];
-        $selectedCat = request('category', 'All');
-    @endphp
+                    <!-- Category Filter Pills -->
+                    <div class="flex items-center space-x-2 overflow-x-auto pb-6 mb-8 border-b border-gray-100 w-full md:w-auto">
+                        @php
+                            $categories = ['All', 'Deluxe', 'Suite', 'Standard', 'Cottage', 'Villa'];
+                            $selectedCat = request('category', 'All');
+                        @endphp
 
-    @foreach($categories as $cat)
-        <a href="{{ route('rooms.index', array_merge(request()->query(), ['category' => $cat])) }}"
-           class="px-5 py-2 rounded-full text-sm font-medium whitespace-nowrap transition {{ $selectedCat === $cat ? 'bg-indigo-600 text-white shadow-sm' : 'bg-gray-100 hover:bg-gray-200 text-gray-700' }}">
-            {{ $cat === 'All' ? 'All Rooms' : $cat }}
-        </a>
-    @endforeach
-</div>  
+                        @foreach($categories as $cat)
+                            <a href="{{ route('rooms.index', array_merge(request()->query(), ['category' => $cat])) }}"
+                               class="px-5 py-2 rounded-full text-sm font-medium whitespace-nowrap transition {{ $selectedCat === $cat ? 'bg-indigo-600 text-white shadow-sm' : 'bg-gray-100 hover:bg-gray-200 text-gray-700' }}">
+                                {{ $cat === 'All' ? 'All Rooms' : $cat }}
+                            </a>
+                        @endforeach
+                    </div>  
 
                     <!-- Search Input -->
                     <div class="relative w-full md:w-72">
@@ -51,10 +51,15 @@
                         @foreach($rooms as $room)
                             <div class="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition duration-300 overflow-hidden flex flex-col justify-between group">
                                 <div>
-                                    <!-- Room Image -->
+                                    <!-- Room Image & Top Badges -->
                                     <div class="relative aspect-[16/10] overflow-hidden">
                                         @php
                                             $imagePath = $room->featured_image ?? $room->image;
+                                            
+                                            // Construct compact location (e.g., "Thamel, Kathmandu")
+                                            $compactLocation = implode(', ', array_filter([
+                                                $room->hotel->destination 
+                                            ])) ?: 'Nepal';
                                         @endphp
 
                                         <img src="{{ $imagePath && (Str::startsWith($imagePath, ['http://', 'https://']) ? $imagePath : (Storage::disk('public')->exists($imagePath) ? asset('storage/' . $imagePath) : null)) ?? 'https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&q=80&w=800' }}"
@@ -62,8 +67,15 @@
                                              class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
                                              onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&q=80&w=800';" />
 
+                                        <!-- Status Badge (Left) -->
                                         <span class="absolute top-4 left-4 {{ $room->available_rooms > 0 ? 'bg-emerald-500' : 'bg-rose-500' }} text-white text-xs font-semibold px-3 py-1 rounded-full shadow">
                                             {{ $room->available_rooms > 0 ? 'Available' : 'Sold Out' }}
+                                        </span>
+
+                                        <!-- Compact Location Badge (Right) -->
+                                        <span class="absolute top-4 right-4 bg-black/60 backdrop-blur-md text-white text-xs font-medium px-2.5 py-1 rounded-full shadow flex items-center gap-1 max-w-[50%] truncate">
+                                            <i class="ri-map-pin-2-fill text-rose-400 text-xs shrink-0"></i>
+                                            <span class="truncate">{{ $compactLocation }}</span>
                                         </span>
                                     </div>
 
@@ -71,7 +83,10 @@
                                     <div class="p-6 space-y-4">
                                         <div>
                                             <h3 class="text-xl font-bold text-gray-900 group-hover:text-indigo-600 transition">{{ $room->name }}</h3>
-                                            <p class="text-gray-400 text-xs mt-0.5">{{ $room->hotel->name ?? 'SafeNest Stay' }}</p>
+                                            <p class="text-gray-400 text-xs mt-0.5 flex items-center gap-1">
+                                                <i class="ri-hotel-line text-indigo-500 text-xs"></i>
+                                                {{ $room->hotel->name ?? 'SafeNest Stay' }}
+                                            </p>
                                         </div>
 
                                         <!-- Specs Grid -->
@@ -106,7 +121,7 @@
                                         <span class="text-xs text-gray-400 block">Price / night</span>
                                         <span class="text-lg font-bold text-gray-900">NPR {{ number_format($room->price_per_night) }}</span>
                                     </div>
-                                    <a href="#" class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-4 py-2 rounded-xl text-sm transition">
+                                    <a href="{{ route('rooms.show', $room) }}" class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-4 py-2 rounded-xl text-sm transition">
                                         Book Now
                                     </a>
                                 </div>
