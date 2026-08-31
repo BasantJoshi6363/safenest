@@ -28,6 +28,8 @@ class Order extends Model
         'status',
         'payment_status',
         'special_requests',
+        'payment_method', 
+        
     ];
 
     protected $casts = [
