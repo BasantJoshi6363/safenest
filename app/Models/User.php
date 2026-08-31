@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Database\Factories\UserFactory;
+use Filament\Tables\Columns\Layout\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -22,8 +23,9 @@ class User extends Authenticatable
     use Notifiable;
 
     protected $fillable = [
-'name',
+        'name',
         'email',
+        'role',
         'phone',
         'country',
         'username',
@@ -56,6 +58,12 @@ class User extends Authenticatable
         ];
     }
 
-    
-    
+    public function canAccessPanel(Panel $panel): bool
+    {
+        // Allow access ONLY if the user's role is 'admin' or 'super-admin'
+        return in_array($this->role, ['admin', 'super-admin']);
+    }
+
+
+
 }
