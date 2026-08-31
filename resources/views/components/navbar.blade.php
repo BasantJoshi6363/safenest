@@ -92,8 +92,21 @@
 
                             <!-- Dropdown Panel -->
                             <div id="userDropdownMenu" style="display: none;"
-                                class="absolute right-0 mt-2 w-48 bg-white rounded-2xl shadow-xl border border-gray-100 py-2 z-50">
+                                class="absolute right-0 mt-2 w-52 bg-white rounded-2xl shadow-xl border border-gray-100 py-2 z-50">
 
+                                <!-- Admin Panel Link (Only visible to admin and super-admin) -->
+                                @if(in_array(Auth::user()->role, ['admin', 'super-admin']))
+                                    <a href="/admin"
+                                        class="flex items-center px-4 py-2.5 text-sm font-semibold text-indigo-600 hover:bg-indigo-50 transition">
+                                        <i class="ri-dashboard-line mr-3 text-lg"></i> Admin Panel
+                                    </a>
+                                    <div class="border-t border-gray-100 my-1"></div>
+                                @endif
+
+                                <a href="{{ route('orders.index') }}" data-title="My Orders / Safenest"
+                                    class="nav-title-link flex items-center px-4 py-2.5 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition">
+                                    <i class="ri-shopping-bag-3-line mr-3 text-lg text-indigo-500"></i> My Orders
+                                </a>
                                 <a href="/profile" data-title="Profile / Safenest"
                                     class="nav-title-link flex items-center px-4 py-2.5 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition">
                                     <i class="ri-user-line mr-3 text-lg"></i> Profile
@@ -182,6 +195,18 @@
                                 </div>
                             </div>
 
+                            <!-- Mobile Admin Panel Link -->
+                            @if(in_array(Auth::user()->role, ['admin', 'super-admin']))
+                                <a href="/admin"
+                                    class="flex items-center px-3 py-2 rounded-md text-base font-semibold text-indigo-600 bg-indigo-50 hover:bg-indigo-100 mb-2 transition">
+                                    <i class="ri-dashboard-line mr-3 text-lg"></i> Admin Panel
+                                </a>
+                            @endif
+
+                            <a href="{{ route('orders.index') }}" data-title="My Orders / Safenest"
+                                class="nav-title-link flex items-center px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-indigo-600 hover:bg-gray-50">
+                                <i class="ri-shopping-bag-3-line mr-3 text-lg text-indigo-500"></i> My Orders
+                            </a>
                             <a href="/profile" data-title="Profile / Safenest"
                                 class="nav-title-link flex items-center px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-indigo-600 hover:bg-gray-50">
                                 <i class="ri-user-line mr-3 text-lg"></i> Profile
