@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use App\Models\Order;
-use App\Observers\OrderObserver;
+use App\Notifications\CustomResetPassword;
+use Filament\Auth\Notifications\ResetPassword as FilamentResetPassword;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +13,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        // Intercept Filament's internal reset password notification and force it to use your SafeNest theme
+        $this->app->bind(FilamentResetPassword::class, function ($app, array $parameters) {
+            return new CustomResetPassword($parameters['token'] ?? '');
+        });
     }
 
     /**
@@ -21,6 +24,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Order::observe(OrderObserver::class);
+        // ...
     }
 }
