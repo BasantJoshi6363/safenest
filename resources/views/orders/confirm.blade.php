@@ -42,7 +42,7 @@
                 </div>
                 <div>
                     <label class="block text-xs font-semibold text-gray-500 mb-1">Phone</label>
-                    <input type="text" name="guest_phone" value="{{ old('guest_phone') }}"
+                    <input type="text" name="guest_phone" value="{{ old('guest_phone',auth()->user()->phone ?? '') }}"
                         class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" />
                 </div>
                 <div>
