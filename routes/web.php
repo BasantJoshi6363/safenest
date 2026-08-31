@@ -95,6 +95,10 @@ Route::middleware('auth')->group(function () {
     // Profile
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
     Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
+
+    //orders
+    Route::get('/my-orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::patch('/orders/{order}/cancel', [OrderController::class, 'cancel'])->name('orders.cancel');
 });
 
 /*
@@ -124,3 +128,5 @@ Route::get('/payments/esewa/success', [EsewaController::class, 'success'])->name
 Route::get('/payments/esewa/failure', [EsewaController::class, 'failure'])->name('payments.esewa.failure');
 Route::get('/payments/stripe/{order:order_number}/initiate', [StripeController::class, 'initiate'])->name('payments.stripe.initiate');
 Route::get('/payments/stripe/success', [StripeController::class, 'success'])->name('payments.stripe.success');
+
+
