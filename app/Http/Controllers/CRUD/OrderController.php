@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Order;
 use App\Models\Room;
+use Auth;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -17,6 +18,44 @@ class OrderController extends Controller
             'check_out' => ['required', 'date', 'after:check_in'],
             'guests'    => ['required', 'integer', 'min:1'],
         ];
+    }
+
+    public function index()
+    {
+        $orders = Order::with(['room', 'hotel'])
+            ->where('user_id', Auth::id())
+            ->latest()
+            ->paginate(10);
+
+        return view('orders.index', compact('orders'));
+    }
+
+    /**
+     * Cancel an active order and restore room inventory.
+     */
+    public function cancel(Order $order)
+    {
+        // Security check: ensure the order belongs to the authenticated user
+        if ($order->user_id !== Auth::id()) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        // Only allow cancellation for pending or confirmed orders
+        if (!in_array($order->status, ['pending', 'confirmed'])) {
+            return back()->with('error', 'This order cannot be cancelled.');
+        }
+
+        // Update order status
+        $order->update([
+            'status' => 'cancelled',
+        ]);
+
+        // Restore room inventory if applicable
+        if ($order->room) {
+            $order->room->increment('available_rooms');
+        }
+
+        return back()->with('success', 'Your order #' . $order->order_number . ' has been successfully cancelled.');
     }
 
     /** Step 1: validate dates/guests, show confirmation page */
