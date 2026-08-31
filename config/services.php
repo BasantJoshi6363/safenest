@@ -47,9 +47,14 @@ return [
         'redirect' => env('FACEBOOK_REDIRECT_URI'),
     ],
     'esewa' => [
-    'product_code' => env('ESEWA_PRODUCT_CODE', 'EPAYTEST'),
-    'secret' => env('ESEWA_SECRET', '8gBm/:&EnhH.1/q'),
-    'gateway_url' => env('ESEWA_GATEWAY_URL', 'https://rc-epay.esewa.com.np/api/epay/main/v2/form'),
-],
+        'product_code' => env('ESEWA_PRODUCT_CODE', 'EPAYTEST'),
+        'secret' => env('ESEWA_SECRET', '8gBm/:&EnhH.1/q'),
+        'gateway_url' => env('ESEWA_GATEWAY_URL', 'https://rc-epay.esewa.com.np/api/epay/main/v2/form'),
+    ],
+    'stripe' => [
+        'key' => env('STRIPE_KEY'),
+        'secret' => env('STRIPE_SECRET'),
+        'webhook' => env('STRIPE_WEBHOOK_SECRET'),
+    ],
 
 ];
