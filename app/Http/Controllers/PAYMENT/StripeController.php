@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\PAYMENT;
-use App\Http\Controllers\Controller;
 
+use App\Http\Controllers\Controller;
 use App\Models\Order;
+use Illuminate\Http\Request; // <-- CHANGE THIS LINE
 use Stripe\Checkout\Session;
 use Stripe\Stripe;
 
@@ -17,9 +18,9 @@ class StripeController extends Controller
             'payment_method_types' => ['card'],
             'line_items' => [[
                 'price_data' => [
-                    'currency' => 'usd', // Stripe doesn't support NPR directly — convert or use USD
+                    'currency' => 'npr',
                     'product_data' => ['name' => "{$order->room->name} — {$order->hotel->name}"],
-                    'unit_amount' => (int) round($order->total_price * 100), // adjust for currency conversion
+                    'unit_amount' => (8000 * 100), 
                 ],
                 'quantity' => 1,
             ]],
