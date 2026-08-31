@@ -18,6 +18,12 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use App\Filament\Widgets\StatsOverview;
+use App\Filament\Widgets\BookingChart;
+use App\Filament\Widgets\RecentOrdersTable;
+use App\Filament\Widgets\OccupancyChart;
+use App\Filament\Widgets\TodaysArrivalsTable;
+use App\Filament\Widgets\HotelStatsOverview;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -39,8 +45,12 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
             ->widgets([
-                AccountWidget::class,
-                FilamentInfoWidget::class,
+                StatsOverview::class,
+                BookingChart::class,
+                RecentOrdersTable::class,
+                OccupancyChart::class,
+                TodaysArrivalsTable::class,
+                HotelStatsOverview::class,
             ])
             ->middleware([
                 EncryptCookies::class,
