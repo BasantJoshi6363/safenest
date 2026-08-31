@@ -34,6 +34,8 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
+            ->registration()
+            ->passwordReset()
             ->brandLogo(asset('images/tab_logo.png'))
             ->brandLogoHeight('3.5rem') 
             // 💻 (Optional) Keeps the "SafeNest" text fallback for browser tab titles
