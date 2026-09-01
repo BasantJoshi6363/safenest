@@ -21,7 +21,7 @@
 
                         <!-- CTA Button -->
                         <div>
-                            <a href="#explore"
+                            <a href="/rooms"
                                class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-8 py-3 rounded-lg shadow-lg hover:shadow-indigo-200 transition duration-150 ease-in-out">
                                 Show More
                             </a>
