@@ -16,6 +16,7 @@ use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\Auth\ContactController;
 use App\Http\Controllers\CRUD\HotelController;
 use App\Http\Controllers\CRUD\RoomController;
+use App\Http\Controllers\CRUD\HotelRegisterController;
 
 
 /*
@@ -128,5 +129,9 @@ Route::get('/payments/esewa/success', [EsewaController::class, 'success'])->name
 Route::get('/payments/esewa/failure', [EsewaController::class, 'failure'])->name('payments.esewa.failure');
 Route::get('/payments/stripe/{order:order_number}/initiate', [StripeController::class, 'initiate'])->name('payments.stripe.initiate');
 Route::get('/payments/stripe/success', [StripeController::class, 'success'])->name('payments.stripe.success');
+
+
+Route::get('/hotel-register', [HotelRegisterController::class, 'create'])->name('hotel.register');
+Route::post('/hotel-register', [HotelRegisterController::class, 'store'])->name('hotel.register.store');
 
 
