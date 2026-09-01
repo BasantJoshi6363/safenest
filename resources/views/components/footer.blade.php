@@ -19,7 +19,7 @@
                 <p class="text-gray-800 font-semibold text-base">
                     Become hotel Owner
                 </p>
-                <a href="#" class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-6 py-2.5 rounded-lg shadow-sm hover:shadow transition duration-150 ease-in-out">
+                <a href="/hotel-register" class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-6 py-2.5 rounded-lg shadow-sm hover:shadow transition duration-150 ease-in-out">
                     Register Now
                 </a>
             </div>
